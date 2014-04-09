@@ -1,0 +1,3 @@
+[submodule "luarocks"]
+	path = luarocks
+	url = https://github.com/keplerproject/luarocks.git
