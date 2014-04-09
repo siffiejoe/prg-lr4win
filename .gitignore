@@ -1,0 +1,9 @@
+# generated files/directories
+downloads/
+lua-5.1/
+lua-5.2/
+mingw/
+
+# Vim temporaries
+.*.swp
+
