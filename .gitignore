@@ -3,6 +3,7 @@ downloads/
 lua-5.1/
 lua-5.2/
 mingw/
+build.log
 
 # Vim temporaries
 .*.swp

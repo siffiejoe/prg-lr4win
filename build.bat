@@ -10,9 +10,9 @@
 ::   repository using the --recursive flag. If not: execute
 ::     git submodule update --init
 ::   to get the submodule containing LuaRocks's source code.
-:: * You will need an existing installation of MinGW for building the
-::   Lua binaries with the bin directory in your PATH.
 :: * You will need InnoSetup to actually create the installer.
+:: * This build script will only work if the path does not contain
+::   spaces (MinGW is a bit picky ...).
 
 :: some variables you might want to configure ...
 set LUAV51=5.1.5
@@ -30,30 +30,44 @@ set SZIP=%BINDIR%\7z.exe
 set LUAURL=http://www.lua.org/ftp
 set MINGWURL=http://downloads.sourceforge.net/project/mingw/MinGW
 set BASEDIR="%~dp0"
+set LOGFILE="%~dp0build.log"
 
 
+:: hack to make sure that we can bail out from within nested
+:: subroutines without killing the console window
 if "%~1" EQU "_GO_" (shift /1 & goto :main)
 cmd /c ^""%~f0" _GO_ %*^"
 exit /B
 
+
 :: start of the script
 :main
+:: make sure that our path does not contain spaces (MinGW will choke!)
+if %BASEDIR: =x% NEQ %BASEDIR% (
+  echo Argh! Our file path contains spaces. That won't work!
+  echo Please run me from a safer location ...
+  exit 1
+)
+:: put mingw directory into PATH for compiling Lua later
+set PATH=%~dp0mingw\bin;%PATH%
+
 :: first create some necessary directories:
 mkdir downloads 2>NUL
 mkdir mingw 2>NUL
+:: empty log file
+type NUL > %LOGFILE%
 
 :: download all the necessary stuff from the internet
 call :download_lua %LUAV51%
 call :download_lua %LUAV52%
 call :download_mingw
-
-:: TODO compile lua
+:: compile lua
+call :compile_lua51
+call :compile_lua52
 
 echo Downloading and compiling complete!
 echo Now run InnoSetup to create the installer ...
 goto :eof
-
-
 
 
 :: helper functions:
@@ -72,7 +86,7 @@ setlocal
 set _var=%1
 :url_basename_loop
 set _result=%_var:*/=%
-if /%_result%/ NEQ /%_var%/ (
+if %_result% NEQ %_var% (
   set _var=%_result%
   goto :url_basename_loop
 )
@@ -86,7 +100,7 @@ setlocal
 set _url=%1
 call :url_basename %_url%
 echo Downloading %_url% ...
-%WGET% -q -nc -P downloads %_url% >NUL 2>NUL || call :die
+%WGET% -nc -P downloads %_url% >>%LOGFILE% 2>&1 || call :die
 endlocal & set _result=%_result%
 goto :eof
 
@@ -98,8 +112,8 @@ set _tarball=%1
 set _dir=%2
 call :strip_ext %_tarball%
 echo Extracting %_tarball% ...
-%SZIP% x -aoa -odownloads downloads\%_tarball% >NUL 2>NUL || call :die
-%SZIP% x -aoa -o%_dir% downloads\%_result% >NUL 2>NUL || call :die
+%SZIP% x -aoa -odownloads downloads\%_tarball% >>%LOGFILE% 2>&1 || call :die
+%SZIP% x -aoa -o%_dir% downloads\%_result% >>%LOGFILE% 2>&1 || call :die
 endlocal
 goto :eof
 
@@ -112,8 +126,8 @@ call :download %LUAURL%/lua-%_ver%.tar.gz
 call :extract_tarball %_result% %BASEDIR%
 set _dir=lua-%_ver%
 call :strip_ext %_dir%
-if exist %_result% rmdir /S /Q %_result%
-rename %_dir% %_result% || call :die
+if exist %_result% rmdir /S /Q %_result% >>%LOGFILE% 2>&1
+rename %_dir% %_result% >>%LOGFILE% 2>&1 || call :die
 endlocal & set _result=%_result%
 goto :eof
 
@@ -175,11 +189,30 @@ call :download_mingw_package %MAKE_BIN%
 endlocal
 goto :eof
 
+:compile_lua51
+setlocal
+echo Compiling Lua 5.1 ...
+copy modified_lua51_makefile lua-5.1\src\Makefile >>%LOGFILE% 2>&1 || call :die
+pushd lua-5.1 || call :die
+mingw32-make.exe mingw >>%LOGFILE% 2>&1 || call :die
+popd
+endlocal
+goto :eof
+
+:compile_lua52
+setlocal
+echo Compiling Lua 5.2 ...
+pushd lua-5.2 || call :die
+mingw32-make.exe mingw >>%LOGFILE% 2>&1 || call :die
+popd
+endlocal
+goto :eof
+
 
 :: for bailing out when an error occurred
 :die
-echo Whoa something went wrong ... Sorry!
+echo Whoa, something went wrong ... Sorry!
+echo Check the logfile %LOGFILE% for details ...
 exit 1
 goto :eof
-
 
