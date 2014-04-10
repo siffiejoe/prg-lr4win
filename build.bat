@@ -192,7 +192,8 @@ goto :eof
 :compile_lua51
 setlocal
 echo Compiling Lua 5.1 ...
-copy modified_lua51_makefile lua-5.1\src\Makefile >>%LOGFILE% 2>&1 || call :die
+for /F "eol=# delims=# tokens=1" %%G in ('findstr /V "^#" lua-5.1\src\Makefile') do @echo %%G>> lua-5.1\src\Makefile.fixed
+copy lua-5.1\src\Makefile.fixed lua-5.1\src\Makefile >>%LOGFILE% 2>&1 || call :die
 pushd lua-5.1 || call :die
 mingw32-make.exe mingw >>%LOGFILE% 2>&1 || call :die
 popd
