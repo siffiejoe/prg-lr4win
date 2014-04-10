@@ -36,8 +36,8 @@ Source: "luarocks\win32\bin\bin\*"; DestDir: "{app}\tools"
 Source: "luarocks\src\luarocks\*"; DestDir: "{app}\luarocks\share\lua\luarocks"; Flags: recursesubdirs
 Source: "luarocks\src\bin\luarocks"; DestDir: "{app}\luarocks\bin"; DestName: "luarocks.lua"
 Source: "luarocks\src\bin\luarocks-admin"; DestDir: "{app}\luarocks\bin"; DestName: "luarocks-admin.lua"
-Source: "templates\config-5.1.lua"; DestDir: "{app}\luarocks\etc"; AfterInstall: CustomizeConfig
-Source: "templates\config-5.2.lua"; DestDir: "{app}\luarocks\etc"; AfterInstall: CustomizeConfig
+Source: "templates\config-5.1.lua"; DestDir: "{app}\luarocks\etc\luarocks"; AfterInstall: CustomizeConfig
+Source: "templates\config-5.2.lua"; DestDir: "{app}\luarocks\etc\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks-admin51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig

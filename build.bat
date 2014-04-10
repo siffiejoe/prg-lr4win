@@ -36,7 +36,7 @@ set LOGFILE="%~dp0build.log"
 :: hack to make sure that we can bail out from within nested
 :: subroutines without killing the console window
 if "%~1" EQU "_GO_" (shift /1 & goto :main)
-cmd /c ^""%~f0" _GO_ %*^"
+cmd /C ^""%~f0" _GO_ %*^"
 exit /B
 
 
@@ -64,9 +64,14 @@ call :download_mingw
 :: compile lua
 call :compile_lua51
 call :compile_lua52
-
-echo Downloading and compiling complete!
-echo Now run InnoSetup to create the installer ...
+:: call InnoSetup if it's in the path
+call :find_in_path iscc.exe
+if %_result% NEQ "" (
+  %_result% lr4win.iss >>%LOGFILE% 2>&1 || call :die
+) else (
+  echo Downloading and compiling complete!
+  echo Now run InnoSetup to create the installer ...
+)
 goto :eof
 
 
@@ -189,6 +194,7 @@ call :download_mingw_package %MAKE_BIN%
 endlocal
 goto :eof
 
+
 :compile_lua51
 setlocal
 echo Compiling Lua 5.1 ...
@@ -207,6 +213,15 @@ pushd lua-5.2 || call :die
 mingw32-make.exe mingw >>%LOGFILE% 2>&1 || call :die
 popd
 endlocal
+goto :eof
+
+
+:find_in_path
+setlocal
+set _var="%~1"
+set _result="%~$PATH:1"
+if %_result% = %_var% set _result=""
+endlocal & set _result=%_result%
 goto :eof
 
 
