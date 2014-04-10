@@ -40,8 +40,8 @@ Source: "LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 ; Create empty directories here ...
 
 [Icons]
-Name: "{userdesktop}\LuaRocks DosBox"; Filename: "{app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
-Name: "{userprograms}\LuaRocks DosBox"; Filename: "{app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
+Name: "{userdesktop}\LuaRocks DosBox"; Filename: "{%COMSPEC|cmd.exe}"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
+Name: "{userprograms}\LuaRocks DosBox"; Filename: "{%COMSPEC|cmd.exe}"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
 
 [Code]
 var
