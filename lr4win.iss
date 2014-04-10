@@ -32,17 +32,37 @@ Source: "lua-5.2\src\lauxlib.h"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\src\luaconf.h"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\src\lua.hpp"; DestDir: "{app}\lua\include\lua52"
 ; LuaRocks
-; TODO
+Source: "luarocks\win32\bin\bin\*"; DestDir: "{app}\tools"
+Source: "luarocks\src\luarocks\*"; DestDir: "{app}\luarocks\share\lua\luarocks"; Flags: recursesubdirs
+Source: "luarocks\src\bin\luarocks"; DestDir: "{app}\luarocks\bin"; DestName: "luarocks.lua"
+Source: "luarocks\src\bin\luarocks-admin"; DestDir: "{app}\luarocks\bin"; DestName: "luarocks-admin.lua"
+Source: "templates\config-5.1.lua"; DestDir: "{app}\luarocks\etc"; AfterInstall: CustomizeConfig
+Source: "templates\config-5.2.lua"; DestDir: "{app}\luarocks\etc"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-admin51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-admin52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\site_config51.lua"; DestDir: "{app}\luarocks\share\lua\luarocks\5.1"; DestName: "site_config.lua"; AfterInstall: CustomizeConfig
+Source: "templates\site_config52.lua"; DestDir: "{app}\luarocks\share\lua\luarocks\5.2"; DestName: "site_config.lua"; AfterInstall: CustomizeConfig
 ; Support files
 Source: "LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 
 [Dirs]
 Name: "{app}\3rdparty\include"
-Name: "{app}\3rdparty\lib"
+Name: "{app}\3rdparty\lua\5.1"
+Name: "{app}\3rdparty\lua\5.2"
+Name: "{app}\3rdparty\lib\5.1"
+Name: "{app}\3rdparty\lib\5.2"
+Name: "{app}\luarocks\share\lua\5.1"
+Name: "{app}\luarocks\share\lua\5.2"
+Name: "{app}\luarocks\lib\lua\5.1"
+Name: "{app}\luarocks\lib\lua\5.2"
+Name: "{app}\luarocks\lib\luarocks\rocks-5.1"
+Name: "{app}\luarocks\lib\luarocks\rocks-5.2"
 
 [Icons]
-Name: "{userdesktop}\LuaRocks DosBox"; Filename: "{%COMSPEC|cmd.exe}"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
-Name: "{userprograms}\LuaRocks DosBox"; Filename: "{%COMSPEC|cmd.exe}"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
+Name: "{userdesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
+Name: "{userprograms}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
 
 [Code]
 var
