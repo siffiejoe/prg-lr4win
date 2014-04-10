@@ -36,8 +36,9 @@ Source: "lua-5.2\src\lua.hpp"; DestDir: "{app}\lua\include\lua52"
 ; Support files
 Source: "LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 
-;[Dirs]
-; Create empty directories here ...
+[Dirs]
+Name: "{app}\3rdparty\include"
+Name: "{app}\3rdparty\lib"
 
 [Icons]
 Name: "{userdesktop}\LuaRocks DosBox"; Filename: "{%COMSPEC|cmd.exe}"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
