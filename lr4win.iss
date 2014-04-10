@@ -10,7 +10,6 @@ AllowNetworkDrive=no
 DisableProgramGroupPage=yes
 OutputBaseFilename=LR4WinSetup
 OutputDir=.
-;SetupIconFile=lr4win.ico
 
 [Files]
 ; MinGW
@@ -36,18 +35,18 @@ Source: "lua-5.2\src\lua.hpp"; DestDir: "{app}\lua\include\lua52"
 ; TODO
 ; Support files
 Source: "LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
-;Source: "lr4win.ico"; DestDir: "{app}"
 
 ;[Dirs]
 ; Create empty directories here ...
 
 [Icons]
 Name: "{userdesktop}\LuaRocks DosBox"; Filename: "{app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
-;Name: "{userdesktop}\LuaRocks DosBox"; Filename: "{app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"; IconFileName: "{app}/lr4win.ico"
 Name: "{userprograms}\LuaRocks DosBox"; Filename: "{app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
-;Name: "{userprograms}\LuaRocks DosBox"; Filename: "{app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"; IconFileName: "{app}/lr4win.ico"
 
 [Code]
+var
+  CancelWithoutPrompt: Boolean;
+
 // see http://stackoverflow.com/questions/20174359/replace-a-text-in-a-file-with-inno-setup
 function FileReplaceString( const FileName, SearchString, ReplaceString: String ): Boolean;
 var
@@ -75,11 +74,22 @@ end;
 
 // AfterInstall hook for some config files
 procedure CustomizeConfig();
+var
+  RealFileName: String;
 begin
-  if not FileReplaceString( CurrentFileName, '@@DIR@@', ExpandConstant('{app}') ) then
+  RealFileName := ExpandConstant( CurrentFileName );
+  if not FileReplaceString( RealFileName, '@@DIR@@', ExpandConstant('{app}') ) then
   begin
-    RaiseException( 'Failed to customize a LuaRocks config file ' + CurrentFileName );
+    MsgBox( 'Failed to customize a LuaRocks config file ' + RealFileName, mbError, MB_OK );
+    CancelWithoutPrompt := True;
+    WizardForm.Close
   end;
+end;
+
+function InitializeSetup(): Boolean;
+begin
+  CancelWithoutPrompt := False;
+  result := True;
 end;
 
 // check that the installation path doesn't contain spaces
@@ -91,5 +101,11 @@ begin
     MsgBox( 'Sorry, we can''t have spaces in the installation path!', mbError, MB_OK );
     result := False;
   end;
+end;
+
+procedure CancelButtonClick( CurPageID: Integer; var Cancel, Confirm: Boolean );
+begin
+  if CurPageID = wpInstalling then
+    Confirm := not CancelWithoutPrompt;
 end;
 
