@@ -33,7 +33,7 @@ Source: "lua-5.2\src\luaconf.h"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\src\lua.hpp"; DestDir: "{app}\lua\include\lua52"
 ; LuaRocks
 Source: "luarocks\win32\bin\bin\*"; DestDir: "{app}\tools"
-Source: "luarocks\src\luarocks\*"; DestDir: "{app}\luarocks\2.1\lua"; Flags: recursesubdirs
+Source: "luarocks\src\luarocks\*"; DestDir: "{app}\luarocks\2.1\lua\luarocks"; Flags: recursesubdirs
 Source: "luarocks\win32\bin\rclauncher.c"; DestDir: "{app}\luarocks\2.1";
 Source: "luarocks\src\bin\luarocks"; DestDir: "{app}\luarocks\bin"; DestName: "luarocks.lua"
 Source: "luarocks\src\bin\luarocks-admin"; DestDir: "{app}\luarocks\bin"; DestName: "luarocks-admin.lua"
@@ -43,8 +43,8 @@ Source: "templates\luarocks51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall:
 Source: "templates\luarocks52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks-admin51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks-admin52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
-Source: "templates\site_config_5_1.lua"; DestDir: "{app}\luarocks\2.1\lua"; AfterInstall: CustomizeConfig
-Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.1\lua"; AfterInstall: CustomizeConfig
+Source: "templates\site_config_5_1.lua"; DestDir: "{app}\luarocks\2.1\lua\luarocks"; AfterInstall: CustomizeConfig
+Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.1\lua\luarocks"; AfterInstall: CustomizeConfig
 ; Support files
 Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 

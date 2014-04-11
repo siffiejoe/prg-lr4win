@@ -46,6 +46,7 @@ exit /B
 if %BASEDIR: =x% NEQ %BASEDIR% (
   echo Argh! Our file path contains spaces. That won't work!
   echo Please run me from a safer location ...
+  pause
   exit 1
 )
 :: put mingw directory into PATH for compiling Lua later
@@ -74,6 +75,7 @@ if defined _result (
   echo Downloading and compiling complete!
   echo Now run InnoSetup to create the installer ...
 )
+pause
 goto :eof
 
 
@@ -229,6 +231,7 @@ goto :eof
 :die
 echo Whoa, something went wrong ... Sorry!
 echo Check the logfile %LOGFILE% for details ...
+pause
 exit 1
 goto :eof
 

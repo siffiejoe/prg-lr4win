@@ -1,4 +1,4 @@
-echo off & setlocal
+@echo off & setlocal
 
 set LR4WIN=@@DIR@@
 if not defined LUA_PATH set LUA_PATH=;
