@@ -6,7 +6,7 @@ return {
   LUA_INTERPRETER=LR4WIN..[[\lua\lua52.exe]],
   LUAROCKS_UNAME_S=[[MINGW]],
   LUAROCKS_UNAME_M=[[x86]],
-  LUAROCKS_SYSCONFIG=LR4WIN..[[\luarocks\etc\luarock\config-5.2.lua]],
+  LUAROCKS_SYSCONFIG=LR4WIN..[[\luarocks\etc\luarocks\config-5.2.lua]],
   LUAROCKS_ROCKS_TREE=LR4WIN..[[\luarocks]],
   LUAROCKS_ROCKS_SUBDIR=[[\lib\luarocks\rocks-5.2]],
   LUAROCKS_PREFIX=LR4WIN..[[\luarocks]],
