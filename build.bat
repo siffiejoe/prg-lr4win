@@ -66,8 +66,10 @@ call :compile_lua51
 call :compile_lua52
 :: call InnoSetup if it's in the path
 call :find_in_path iscc.exe
-if %_result% NEQ "" (
-  %_result% lr4win.iss >>%LOGFILE% 2>&1 || call :die
+if defined _result (
+  echo Creating installer ... ^(This may take a while!^)
+  "%_result%" lr4win.iss >>%LOGFILE% 2>&1 || call :die
+  echo Done.
 ) else (
   echo Downloading and compiling complete!
   echo Now run InnoSetup to create the installer ...
@@ -218,9 +220,7 @@ goto :eof
 
 :find_in_path
 setlocal
-set _var="%~1"
-set _result="%~$PATH:1"
-if %_result% = %_var% set _result=""
+set _result=%~$PATH:1
 endlocal & set _result=%_result%
 goto :eof
 

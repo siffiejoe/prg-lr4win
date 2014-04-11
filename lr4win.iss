@@ -45,7 +45,7 @@ Source: "templates\luarocks-admin52.bat"; DestDir: "{app}\luarocks\bin"; AfterIn
 Source: "templates\site_config51.lua"; DestDir: "{app}\luarocks\share\lua\luarocks\5.1"; DestName: "site_config.lua"; AfterInstall: CustomizeConfig
 Source: "templates\site_config52.lua"; DestDir: "{app}\luarocks\share\lua\luarocks\5.2"; DestName: "site_config.lua"; AfterInstall: CustomizeConfig
 ; Support files
-Source: "LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
+Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 
 [Dirs]
 Name: "{app}\3rdparty\include"
