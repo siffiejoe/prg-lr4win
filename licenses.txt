@@ -1,0 +1,181 @@
+#                              Licenses                              #
+
+This installer bundles multiple programs written by different authors,
+and distributed under different licenses:
+
+
+###                               Lua                              ###
+
+An extensible extension Language.
+
+http://www.lua.org/
+
+MIT License, http://www.lua.org/license.html
+
+Copyright © 1994–2014 Lua.org, PUC-Rio.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+###                            LuaRocks                           ###
+
+A deployment and management system for Lua modules.
+
+http://luarocks.org/
+MIT License, http://luarocks.org/en/License
+
+Copyright © 2007-2014 Kepler Project.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+###                              MinGW                             ###
+
+Minimal GNU for Windows.
+
+http://www.mingw.org/
+See http://www.mingw.org/license for detailed license information.
+
+MinGW Runtime, w32api:
+Copyright (c) 2012 MinGW.org project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice, this permission notice and the below
+disclaimer shall be included in all copies or substantial portions of
+the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Binutils, GCC, GDB, GNU Make:
+All of the GNU development tools, such as GNU binutils, GCC, GDB and
+GNU Make, are governed by the terms of the GNU General Public License;
+(note that this may be GPLv2 or GPLv3, depending on the preferences of
+the upstream maintainers, and the specific version of each package
+which you choose to install; in most cases, the most recent versions
+are likely to be GPLv3, while older versions may be GPLv2).
+
+
+###                              7-Zip                             ###
+
+A file archiver with a high compression ratio.
+
+http://www.7-zip.org/
+GNU LGPL + unRAR restriction (7z.dll), GNU LGPL (other files),
+http://www.7-zip.org/license.txt
+
+Copyright (C) 1999-2010 Igor Pavlov.
+
+GNU LGPL information:
+
+This library is free software; you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation; either version 2.1 of the
+License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You can receive a copy of the GNU Lesser General Public License from
+http://www.gnu.org/
+
+
+unRAR restriction:
+
+The decompression engine for RAR archives was developed using source
+code of unRAR program. All copyrights to original unRAR code are owned
+by Alexander Roshal.
+
+The license for original unRAR code has the following restriction:
+
+The unRAR sources cannot be used to re-create the RAR compression
+algorithm, which is proprietary. Distribution of modified unRAR
+sources in separate form or as a part of other software is permitted,
+provided that it is clearly stated in the documentation and source
+comments that the code may not be used to develop a RAR (WinRAR)
+compatible archiver.
+
+
+###                            UnxUtils                            ###
+
+Some ports of common GNU utilities to native Win32.
+
+http://unxutils.sourceforge.net/
+See http://unxutils.sourceforge.net/ for detailed license information.
+
+
+###                     Installer/Build Scripts                    ###
+
+https://github.com/siffiejoe/prg-lr4win
+The scripts and batch files to create the windows installer are
+
+Copyright © 2014 Philipp Janda
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+

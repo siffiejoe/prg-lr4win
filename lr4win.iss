@@ -8,6 +8,7 @@ SolidCompression=yes
 AllowUNCPath=no
 AllowNetworkDrive=no
 DisableProgramGroupPage=yes
+LicenseFile="licenses.txt"
 OutputBaseFilename=LR4WinSetup
 OutputDir=.
 
