@@ -1,13 +1,14 @@
 [Setup]
-AppName=LuaRocks4Windows
+AppName="LuaRocks 4 Windows"
 AppId=LuaRocks4WindowsAllInOne
 AppVersion=1.0
 DefaultDirName="{sd}\LR4Win"
+DefaultGroupName="LuaRocks 4 Windows"
 Compression=lzma2
 SolidCompression=yes
 AllowUNCPath=no
 AllowNetworkDrive=no
-DisableProgramGroupPage=yes
+AllowNoIcons=yes
 LicenseFile="licenses.txt"
 OutputBaseFilename=LR4WinSetup
 OutputDir=.
@@ -62,9 +63,16 @@ Name: "{app}\luarocks\lib\lua\5.2"
 Name: "{app}\luarocks\lib\luarocks\rocks-5.1"
 Name: "{app}\luarocks\lib\luarocks\rocks-5.2"
 
+[Tasks]
+Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"
+Name: desktopicon\common; Description: "For all users"; GroupDescription: "Additional icons:"; Flags: exclusive
+Name: desktopicon\user; Description: "For the current user only"; GroupDescription: "Additional icons:"; Flags: exclusive unchecked
+
 [Icons]
-Name: "{userdesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
-Name: "{userprograms}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "{%USERPROFILE|{app}}"
+Name: "{commondesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon\common
+Name: "{userdesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon\user
+Name: "{group}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"
+Name: "{group}\Uninstall LuaRocks"; Filename: "{uninstallexe}"
 
 [Code]
 var

@@ -3,7 +3,7 @@ return {
   LUA_INCDIR=LR4WIN..[[\lua\include\lua52]],
   LUA_LIBDIR=LR4WIN..[[\lua]],
   LUA_BINDIR=LR4WIN..[[\lua]],
-  LUA_INTERPRETER=LR4WIN..[[\lua\lua52.exe]],
+  LUA_INTERPRETER=[[lua52.exe]],
   LUAROCKS_UNAME_S=[[MINGW]],
   LUAROCKS_UNAME_M=[[x86]],
   LUAROCKS_SYSCONFIG=LR4WIN..[[\luarocks\etc\luarocks\config-5.2.lua]],
