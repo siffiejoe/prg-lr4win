@@ -6,6 +6,7 @@ MinGW compiler.
 ##                        Build Instructions                        ##
 
 Prerequisites:
+
 *   a Windows OS
 *   [Inno Setup][1]
 *   git (e.g. [git for Windows][2]) (optional, see below)
@@ -15,6 +16,7 @@ Prerequisites:
   [2]: http://msysgit.github.io/
 
 How to build:
+
 1.  Clone [this repository][3] using the `--recursive` flag (to
     include the [LuaRocks][4] submodule). As an alternative you could
     download the zip files for both Github projects and extract them
@@ -46,6 +48,7 @@ prompt and sets the necessary environment variables for LuaRocks, Lua,
 and MinGW to run properly.
 
 From within the "LuaRocks DosBox" the following should work:
+
 *  Running `lua51` and `luac51`.
 *  Running `lua52` and `luac52`.
 *  Running `luarocks51` and `luarocks-admin51`.
