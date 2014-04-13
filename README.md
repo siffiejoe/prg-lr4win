@@ -62,9 +62,9 @@ From within the "LuaRocks DosBox" the following should work:
    appropriate Lua libraries; loading dynamic libraries from that
    directory should work as well).
 *  Scripts installed via LuaRocks should be in PATH automatically.
-*  `lua51` should also find lua modules in `...\3rdparty\lua\5.1` and
+*  `lua51` should also find Lua modules in `...\3rdparty\lua\5.1` and
    C modules in `...\3rdparty\lib\5.1`.
-*  `lua52` should also find lua modules in `...\3rdparty\lua\5.2` and
+*  `lua52` should also find Lua modules in `...\3rdparty\lua\5.2` and
    C modules in `...\3rdparty\lib\5.2`.
 
 If you don't want to use the "LuaRocks DosBox", you can have a look at

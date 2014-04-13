@@ -62,7 +62,7 @@ type NUL > %LOGFILE%
 call :download_lua %LUAV51%
 call :download_lua %LUAV52%
 call :download_mingw
-:: compile lua
+:: compile Lua
 call :compile_lua51
 call :compile_lua52
 :: call InnoSetup if it's in the path
@@ -84,12 +84,12 @@ goto :eof
 :: strip the last extension from a file name
 :strip_ext
 setlocal
-for /F "delims=" %%i in ("%~1") do set _result=%%~ni
+for /F "delims=" %%G in ("%~1") do set _result=%%~nG
 endlocal & set _result=%_result%
 goto :eof
 
 
-:: get the filename part of an internet url (using forward slashes)
+:: get the filename part of an internet URL (using forward slashes)
 :url_basename
 setlocal
 set _var=%1
@@ -127,7 +127,7 @@ endlocal
 goto :eof
 
 
-:: download a lua tarball and extract it
+:: download a Lua tarball and extract it
 :download_lua
 setlocal
 set _ver=%1

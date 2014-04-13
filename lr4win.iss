@@ -49,6 +49,7 @@ Source: "templates\site_config_5_1.lua"; DestDir: "{app}\luarocks\2.1\lua\luaroc
 Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.1\lua\luarocks"; AfterInstall: CustomizeConfig
 ; Support files
 Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
+Source: "licenses.txt"; DestDir: "{app}"
 
 [Dirs]
 Name: "{app}\3rdparty\include"

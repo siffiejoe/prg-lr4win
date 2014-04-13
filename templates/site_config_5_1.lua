@@ -3,6 +3,7 @@ return {
   LUA_INCDIR=LR4WIN..[[\lua\include\lua51]],
   LUA_LIBDIR=LR4WIN..[[\lua]],
   LUA_BINDIR=LR4WIN..[[\lua]],
+  LUA_DIR_SET=true,
   LUA_INTERPRETER=[[lua51.exe]],
   LUAROCKS_UNAME_S=[[MINGW]],
   LUAROCKS_UNAME_M=[[x86]],

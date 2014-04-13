@@ -2,7 +2,6 @@ local LR4WIN = [===[@@DIR@@]===]
 rocks_trees = {
   { name = [[system]], root = LR4WIN..[[\luarocks]] },
 }
-scripts_dir = LR4WIN..[[\luarocks\bin]]
 variables = {
   MSVCRT = 'm',
   LUALIB = 'lua52.dll',
