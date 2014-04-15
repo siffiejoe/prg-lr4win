@@ -2,7 +2,7 @@
 AppName="LuaRocks 4 Windows"
 AppId=LuaRocks4WindowsAllInOne
 AppVersion=1.0
-DefaultDirName="{sd}\LR4Win"
+DefaultDirName="{code:DefDirRoot}\LR4Win"
 DefaultGroupName="LuaRocks 4 Windows"
 Compression=lzma2
 SolidCompression=yes
@@ -88,7 +88,15 @@ var
 
 function IsPrivileged(): Boolean;
 begin
-  result := IsAdminLoggedOn or IsPowerUserLoggedOn
+  result := IsAdminLoggedOn or IsPowerUserLoggedOn;
+end;
+
+function DefDirRoot( Param: String ): String;
+begin
+  if IsPrivileged then
+    result := ExpandConstant( '{sd}' )
+  else
+    result := ExpandConstant( '{%USERPROFILE|{sd}}' );
 end;
 
 // see http://stackoverflow.com/questions/20174359/replace-a-text-in-a-file-with-inno-setup
