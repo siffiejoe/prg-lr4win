@@ -12,6 +12,7 @@ AllowNoIcons=yes
 LicenseFile="licenses.txt"
 OutputBaseFilename=LR4WinSetup
 OutputDir=.
+PrivilegesRequired=none
 
 [Files]
 ; MinGW
@@ -50,6 +51,9 @@ Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.1\lua\luaroc
 ; Support files
 Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 Source: "licenses.txt"; DestDir: "{app}"
+Source: "luarocks.url"; DestDir: "{app}"
+Source: "manual51.url"; DestDir: "{app}"
+Source: "manual52.url"; DestDir: "{app}"
 
 [Dirs]
 Name: "{app}\3rdparty\include"
@@ -65,19 +69,27 @@ Name: "{app}\luarocks\lib\luarocks\rocks-5.1"
 Name: "{app}\luarocks\lib\luarocks\rocks-5.2"
 
 [Tasks]
-Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"
-Name: desktopicon\common; Description: "For all users"; GroupDescription: "Additional icons:"; Flags: exclusive
-Name: desktopicon\user; Description: "For the current user only"; GroupDescription: "Additional icons:"; Flags: exclusive unchecked
+Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:";
+Name: desktopicon\common; Description: "For all users"; GroupDescription: "Additional icons:"; Flags: exclusive; Check: IsPrivileged
+Name: desktopicon\user; Description: "For the current user only"; GroupDescription: "Additional icons:"; Flags: exclusive unchecked; Check: IsPrivileged
 
 [Icons]
 Name: "{commondesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon\common
-Name: "{userdesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon\user
+Name: "{userdesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon and (not desktopicon\common)
 Name: "{group}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"
+Name: "{group}\LuaRocks Documentation"; Filename: "{app}/luarocks.url"
+Name: "{group}\Lua 5.1 manual"; Filename: "{app}/manual51.url"
+Name: "{group}\Lua 5.2 manual"; Filename: "{app}/manual52.url"
 Name: "{group}\Uninstall LuaRocks"; Filename: "{uninstallexe}"
 
 [Code]
 var
   CancelWithoutPrompt: Boolean;
+
+function IsPrivileged(): Boolean;
+begin
+  result := IsAdminLoggedOn or IsPowerUserLoggedOn
+end;
 
 // see http://stackoverflow.com/questions/20174359/replace-a-text-in-a-file-with-inno-setup
 function FileReplaceString( const FileName, SearchString, ReplaceString: String ): Boolean;
@@ -135,6 +147,7 @@ begin
   end;
 end;
 
+// make an installation error rollback without asking the user
 procedure CancelButtonClick( CurPageID: Integer; var Cancel, Confirm: Boolean );
 begin
   if CurPageID = wpInstalling then
