@@ -25,6 +25,7 @@ Source: "lua-5.1\src\lua.h"; DestDir: "{app}\lua\include\lua51"
 Source: "lua-5.1\src\lualib.h"; DestDir: "{app}\lua\include\lua51"
 Source: "lua-5.1\src\lauxlib.h"; DestDir: "{app}\lua\include\lua51"
 Source: "lua-5.1\src\luaconf.h"; DestDir: "{app}\lua\include\lua51"
+Source: "lua-5.1\doc\*"; DestDir: "{app}\lua\manual\5.1"
 ; Lua 5.2
 Source: "lua-5.2\src\lua.exe"; DestDir: "{app}\lua"; DestName: "lua52.exe"
 Source: "lua-5.2\src\luac.exe"; DestDir: "{app}\lua"; DestName: "luac52.exe"
@@ -34,6 +35,7 @@ Source: "lua-5.2\src\lualib.h"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\src\lauxlib.h"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\src\luaconf.h"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\src\lua.hpp"; DestDir: "{app}\lua\include\lua52"
+Source: "lua-5.2\doc\*"; DestDir: "{app}\lua\manual\5.2"
 ; LuaRocks
 Source: "luarocks\win32\bin\bin\*"; DestDir: "{app}\tools"
 Source: "luarocks\src\luarocks\*"; DestDir: "{app}\luarocks\2.1\lua\luarocks"; Flags: recursesubdirs
@@ -52,8 +54,7 @@ Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.1\lua\luaroc
 Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 Source: "licenses.txt"; DestDir: "{app}"
 Source: "luarocks.url"; DestDir: "{app}"
-Source: "manual51.url"; DestDir: "{app}"
-Source: "manual52.url"; DestDir: "{app}"
+Source: "readme.txt"; DestDir: "{app}"; Flags: isreadme
 
 [Dirs]
 Name: "{app}\3rdparty\include"
@@ -77,9 +78,10 @@ Name: desktopicon\user; Description: "For the current user only"; GroupDescripti
 Name: "{commondesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon\common
 Name: "{userdesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon and (not desktopicon\common)
 Name: "{group}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"
-Name: "{group}\LuaRocks Documentation"; Filename: "{app}/luarocks.url"
-Name: "{group}\Lua 5.1 manual"; Filename: "{app}/manual51.url"
-Name: "{group}\Lua 5.2 manual"; Filename: "{app}/manual52.url"
+Name: "{group}\Show Readme"; Filename: "{app}\readme.txt"
+Name: "{group}\LuaRocks Documentation"; Filename: "{app}\luarocks.url"
+Name: "{group}\Lua 5.1 Manual"; Filename: "{app}\lua\manual\5.1\contents.html"
+Name: "{group}\Lua 5.2 Manual"; Filename: "{app}\lua\manual\5.2\contents.html"
 Name: "{group}\Uninstall LuaRocks"; Filename: "{uninstallexe}"
 
 [Code]
@@ -91,12 +93,24 @@ begin
   result := IsAdminLoggedOn or IsPowerUserLoggedOn;
 end;
 
+function ContainsSpace( Param: String ): Boolean;
+begin
+  result := (Pos( ' ', Param ) <> 0);
+end;
+
 function DefDirRoot( Param: String ): String;
+var
+  UserProfile: String;
 begin
   if IsPrivileged then
     result := ExpandConstant( '{sd}' )
-  else
-    result := ExpandConstant( '{%USERPROFILE|{sd}}' );
+  else begin
+    UserProfile := ExpandConstant( '{%USERPROFILE|{sd}}' );
+    if ContainsSpace( UserProfile ) then
+      result := ExpandConstant( '{sd}' )
+    else
+      result := UserProfile;
+  end;
 end;
 
 // see http://stackoverflow.com/questions/20174359/replace-a-text-in-a-file-with-inno-setup
@@ -148,7 +162,7 @@ end;
 function NextButtonClick( CurPageID: Integer ): Boolean;
 begin
   result := True;
-  if (CurPageID = wpSelectDir) and (Pos( ' ', WizardDirValue ) <> 0) then
+  if (CurPageID = wpSelectDir) and ContainsSpace( WizardDirValue ) then
   begin
     MsgBox( 'Sorry, we can''t have spaces in the installation path!', mbError, MB_OK );
     result := False;
