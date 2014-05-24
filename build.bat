@@ -24,7 +24,7 @@ set LUAV52=5.2.3
 :: (I added mingw32-make for make-based rocks ...)
 
 :: some variables you probably *DON'T* want to configure ...
-set BINDIR=luarocks\win32\bin\bin
+set BINDIR=luarocks\win32\tools
 set WGET=%BINDIR%\wget.exe
 set SZIP=%BINDIR%\7z.exe
 set LUAURL=http://www.lua.org/ftp
@@ -169,7 +169,8 @@ set PTHREADS_DLL=%MINGWURL%/Base/pthreads-w32/pthreads-w32-2.9.1/pthreads-w32-2.
 set ICONV_DEV=%MINGWURL%/Base/libiconv/libiconv-1.14-3/libiconv-1.14-3-mingw32-dev.tar.lzma
 set ICONV_DLL=%MINGWURL%/Base/libiconv/libiconv-1.14-3/libiconv-1.14-3-mingw32-dll.tar.lzma
 set ZLIB_DLL=%MINGWURL%/Base/zlib/zlib-1.2.8/zlib-1.2.8-1-mingw32-dll.tar.lzma
-set GETTEXT_DLL=%MINGWURL%/Base/gettext/gettext-0.18.3.1-1/gettext-0.18.3.1-1-mingw32-dll.tar.lzma
+set GETTEXT_DLL1=%MINGWURL%/Base/gettext/gettext-0.18.3.2-1/libintl-0.18.3.2-1-mingw32-dll-8.tar.xz
+set GETTEXT_DLL2=%MINGWURL%/Base/gettext/gettext-0.18.3.2-1/libgettextpo-0.18.3.2-1-mingw32-dll-0.tar.xz
 set GCC_BIN=%MINGWURL%/Base/gcc/Version4/gcc-4.8.1-4/gcc-core-4.8.1-4-mingw32-bin.tar.lzma
 set GCC_DEV=%MINGWURL%/Base/gcc/Version4/gcc-4.8.1-4/gcc-core-4.8.1-4-mingw32-dev.tar.lzma
 set GCC_DLL=%MINGWURL%/Base/gcc/Version4/gcc-4.8.1-4/gcc-core-4.8.1-4-mingw32-dll.tar.lzma
@@ -190,7 +191,8 @@ call :download_mingw_package %PTHREADS_DLL%
 call :download_mingw_package %ICONV_DEV%
 call :download_mingw_package %ICONV_DLL%
 call :download_mingw_package %ZLIB_DLL%
-call :download_mingw_package %GETTEXT_DLL%
+call :download_mingw_package %GETTEXT_DLL1%
+call :download_mingw_package %GETTEXT_DLL2%
 call :download_mingw_package %GCC_BIN%
 call :download_mingw_package %GCC_DEV%
 call :download_mingw_package %GCC_DLL%
