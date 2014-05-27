@@ -8,7 +8,7 @@ MinGW compiler.
 Prerequisites:
 
 *   a Windows OS
-*   [Inno Setup][1]
+*   [Inno Setup][1] (tested with 5.5.4 (u))
 *   git (e.g. [git for Windows][2]) (optional, see below)
 *   the rest will be downloaded during the build
 
