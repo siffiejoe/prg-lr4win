@@ -153,6 +153,7 @@ goto :eof
 :: download and extract all necessary MinGW packages
 :download_mingw
 setlocal
+:: the following packages are the most recent as of 2014/09/17
 set BINUTILS_BIN=%MINGWURL%/Base/binutils/binutils-2.24/binutils-2.24-1-mingw32-bin.tar.xz
 set BINUTILS_DEV=%MINGWURL%/Base/binutils/binutils-2.24/binutils-2.24-1-mingw32-dev.tar.xz
 set MINGWRT_DEV=%MINGWURL%/Base/mingw-rt/mingwrt-4.0.3/mingwrt-4.0.3-1-mingw32-dev.tar.lzma
