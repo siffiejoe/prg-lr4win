@@ -216,6 +216,7 @@ goto :eof
 :compile_lua52
 setlocal
 echo Compiling Lua 5.2 ...
+type templates\luaconfext.h >> lua-5.2\src\luaconf.h
 pushd lua-5.2 || call :die
 mingw32-make.exe mingw >>%LOGFILE% 2>&1 || call :die
 popd
