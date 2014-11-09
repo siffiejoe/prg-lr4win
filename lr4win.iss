@@ -1,7 +1,7 @@
 [Setup]
 AppName="LuaRocks 4 Windows"
 AppId=LuaRocks4WindowsAllInOne
-AppVersion=2.2.0.1
+AppVersion=2.2.0.2
 DefaultDirName="{code:DefDirRoot}\LR4Win"
 DefaultGroupName="LuaRocks 4 Windows"
 Compression=lzma2
