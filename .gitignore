@@ -2,6 +2,7 @@
 downloads/
 lua-5.1/
 lua-5.2/
+lua-5.3/
 mingw/
 build.log
 LR4WinSetup.exe
