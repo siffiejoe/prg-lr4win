@@ -1,7 +1,7 @@
 [Setup]
 AppName="LuaRocks 4 Windows"
 AppId=LuaRocks4WindowsAllInOne
-AppVersion=2.2.0.2
+AppVersion=2.2.0.3
 DefaultDirName="{code:DefDirRoot}\LR4Win"
 DefaultGroupName="LuaRocks 4 Windows"
 Compression=lzma2
@@ -36,6 +36,16 @@ Source: "lua-5.2\src\lauxlib.h"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\src\luaconf.h"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\src\lua.hpp"; DestDir: "{app}\lua\include\lua52"
 Source: "lua-5.2\doc\*"; DestDir: "{app}\lua\manual\5.2"
+; Lua 5.3
+Source: "lua-5.3\src\lua.exe"; DestDir: "{app}\lua"; DestName: "lua53.exe"
+Source: "lua-5.3\src\luac.exe"; DestDir: "{app}\lua"; DestName: "luac53.exe"
+Source: "lua-5.3\src\lua53.dll"; DestDir: "{app}\lua"
+Source: "lua-5.3\src\lua.h"; DestDir: "{app}\lua\include\lua53"
+Source: "lua-5.3\src\lualib.h"; DestDir: "{app}\lua\include\lua53"
+Source: "lua-5.3\src\lauxlib.h"; DestDir: "{app}\lua\include\lua53"
+Source: "lua-5.3\src\luaconf.h"; DestDir: "{app}\lua\include\lua53"
+Source: "lua-5.3\src\lua.hpp"; DestDir: "{app}\lua\include\lua53"
+Source: "lua-5.3\doc\*"; DestDir: "{app}\lua\manual\5.3"
 ; LuaRocks
 Source: "luarocks\win32\tools\*"; DestDir: "{app}\tools"
 Source: "luarocks\src\luarocks\*"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; Flags: recursesubdirs
@@ -44,12 +54,16 @@ Source: "luarocks\src\bin\luarocks"; DestDir: "{app}\luarocks\bin"; DestName: "l
 Source: "luarocks\src\bin\luarocks-admin"; DestDir: "{app}\luarocks\bin"; DestName: "luarocks-admin.lua"
 Source: "templates\config-5.1.lua"; DestDir: "{app}\luarocks\etc\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\config-5.2.lua"; DestDir: "{app}\luarocks\etc\luarocks"; AfterInstall: CustomizeConfig
+Source: "templates\config-5.3.lua"; DestDir: "{app}\luarocks\etc\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks53.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks-admin51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\luarocks-admin52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-admin53.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_1.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
+Source: "templates\site_config_5_3.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 ; Support files
 Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 Source: "licenses.txt"; DestDir: "{app}"
@@ -60,14 +74,19 @@ Source: "readme.txt"; DestDir: "{app}"; Flags: isreadme
 Name: "{app}\3rdparty\include"
 Name: "{app}\3rdparty\lua\5.1"
 Name: "{app}\3rdparty\lua\5.2"
+Name: "{app}\3rdparty\lua\5.3"
 Name: "{app}\3rdparty\lib\5.1"
 Name: "{app}\3rdparty\lib\5.2"
+Name: "{app}\3rdparty\lib\5.3"
 Name: "{app}\luarocks\share\lua\5.1"
 Name: "{app}\luarocks\share\lua\5.2"
+Name: "{app}\luarocks\share\lua\5.3"
 Name: "{app}\luarocks\lib\lua\5.1"
 Name: "{app}\luarocks\lib\lua\5.2"
+Name: "{app}\luarocks\lib\lua\5.3"
 Name: "{app}\luarocks\lib\luarocks\rocks-5.1"
 Name: "{app}\luarocks\lib\luarocks\rocks-5.2"
+Name: "{app}\luarocks\lib\luarocks\rocks-5.3"
 
 [Tasks]
 Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:";
@@ -82,6 +101,7 @@ Name: "{group}\Show Readme"; Filename: "{app}\readme.txt"
 Name: "{group}\LuaRocks Documentation"; Filename: "{app}\luarocks.url"
 Name: "{group}\Lua 5.1 Manual"; Filename: "{app}\lua\manual\5.1\contents.html"
 Name: "{group}\Lua 5.2 Manual"; Filename: "{app}\lua\manual\5.2\contents.html"
+Name: "{group}\Lua 5.3 Manual"; Filename: "{app}\lua\manual\5.3\contents.html"
 Name: "{group}\Uninstall LuaRocks"; Filename: "{uninstallexe}"
 
 [Code]

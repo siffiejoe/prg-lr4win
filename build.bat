@@ -17,6 +17,7 @@
 :: some variables you might want to configure ...
 set LUAV51=5.1.5
 set LUAV52=5.2.3
+set LUAV53=5.3.0
 :: For the list/versions of MinGW packages used by default see the
 :: :download_mingw subroutine below!
 :: The required packages can be found here:
@@ -61,10 +62,12 @@ type NUL > %LOGFILE%
 :: download all the necessary stuff from the internet
 call :download_lua %LUAV51%
 call :download_lua %LUAV52%
+call :download_lua %LUAV53%
 call :download_mingw
 :: compile Lua
 call :compile_lua51
-call :compile_lua52
+call :compile_lua 5.2
+call :compile_lua 5.3
 :: call InnoSetup if it's in the path
 call :find_in_path iscc.exe
 if defined _result (
@@ -213,11 +216,12 @@ popd
 endlocal
 goto :eof
 
-:compile_lua52
+:compile_lua
 setlocal
-echo Compiling Lua 5.2 ...
-type templates\luaconfext.h >> lua-5.2\src\luaconf.h
-pushd lua-5.2 || call :die
+set _ver=%1
+echo Compiling Lua %_ver% ...
+type templates\luaconfext.h >> lua-%_ver%\src\luaconf.h
+pushd lua-%_ver% || call :die
 mingw32-make.exe mingw >>%LOGFILE% 2>&1 || call :die
 popd
 endlocal

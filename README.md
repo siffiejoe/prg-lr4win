@@ -1,7 +1,7 @@
 #                             prg-lr4win                             #
 
-LuaRocks installer for Windows bundling Lua 5.1, Lua 5.2, and the
-MinGW compiler.
+LuaRocks installer for Windows bundling Lua 5.1, Lua 5.2, Lua 5.3, and
+the MinGW compiler.
 
 ##                        Build Instructions                        ##
 
@@ -26,8 +26,8 @@ How to build:
     paths).
 2.  Execute `build.bat` (either via a DosBox from within the cloned
     repository directory, or by double-clicking in Windows Explorer).
-    This will download and extract the source code for Lua (5.1 and
-    5.2), download a minimal binary MinGW installation from
+    This will download and extract the source code for Lua (5.1, 5.2,
+    and 5.3), download a minimal binary MinGW installation from
     Sourceforge, and compile the Lua source code using the downloaded
     C compiler. As long as you keep the downloaded files you don't
     need to run `build.bat` again.
@@ -51,8 +51,10 @@ From within the "LuaRocks DosBox" the following should work:
 
 *  Running `lua51` and `luac51`.
 *  Running `lua52` and `luac52`.
+*  Running `lua53` and `luac53`.
 *  Running `luarocks51` and `luarocks-admin51`.
 *  Running `luarocks52` and `luarocks-admin52`.
+*  Running `luarocks53` and `luarocks-admin53`.
 *  Running the MinGW compiler tools.
 *  Include files in `...\3rdparty\include` should be picked up by
    LuaRocks automatically when you build a C module (in addition to
@@ -66,6 +68,8 @@ From within the "LuaRocks DosBox" the following should work:
    C modules in `...\3rdparty\lib\5.1`.
 *  `lua52` should also find Lua modules in `...\3rdparty\lua\5.2` and
    C modules in `...\3rdparty\lib\5.2`.
+*  `lua53` should also find Lua modules in `...\3rdparty\lua\5.3` and
+   C modules in `...\3rdparty\lib\5.3`.
 
 If you don't want to use the "LuaRocks DosBox", you can have a look at
 `...\LuaRocksEnv.bat` for the necessary environment changes and apply

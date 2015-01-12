@@ -11,7 +11,7 @@ http://www.lua.org/
 
 MIT License, http://www.lua.org/license.html
 
-Copyright (C) 1994-2014 Lua.org, PUC-Rio.
+Copyright (C) 1994-2015 Lua.org, PUC-Rio.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -27,7 +27,7 @@ A deployment and management system for Lua modules.
 http://luarocks.org/
 MIT License, http://luarocks.org/en/License
 
-Copyright (C) 2007-2014 Kepler Project.
+Copyright (C) 2007-2015 Kepler Project.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -98,7 +98,7 @@ See http://unxutils.sourceforge.net/ for detailed license information.
 https://github.com/siffiejoe/prg-lr4win
 The scripts and batch files to create the windows installer are
 
-Copyright (C) 2014 Philipp Janda
+Copyright (C) 2014,2015 Philipp Janda
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

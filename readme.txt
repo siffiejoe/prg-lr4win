@@ -46,10 +46,16 @@ you use the "LuaRocks DosBox" all programs should be in your `PATH`):
 *   `luac52.exe`: the compiler for Lua 5.2.
 *   DLL and include files for Lua 5.2.
 *   The manual for Lua 5.2 in HTML format.
+*   `lua53.exe`: the interpreter for Lua 5.3.
+*   `luac53.exe`: the compiler for Lua 5.3.
+*   DLL and include files for Lua 5.3.
+*   The manual for Lua 5.3 in HTML format.
 *   `luarocks51.bat`: runs LuaRocks configured for Lua 5.1.
 *   `luarocks-admin51.bat`
 *   `luarocks52.bat`: runs LuaRocks configured for Lua 5.2.
 *   `luarocks-admin52.bat`
+*   `luarocks53.bat`: runs LuaRocks configured for Lua 5.3.
+*   `luarocks-admin53.bat`
 *   Compiler commands for MinGW like `gcc`, `mingw32-make`, etc. (Yes,
     you can compile C programs from within the "LuaRocks DosBox" if
     you want to!)
@@ -65,6 +71,10 @@ or
 
     lua52 myprogram.lua
 
+or
+
+    lua53 myprogram.lua
+
 depending on the Lua version you want to use. (This assumes that the
 Lua interpreters are in your `PATH` -- e.g. when using the "LuaRocks
 DosBox" -- and that `myprogram.lua` is in your current working
@@ -78,8 +88,12 @@ or
 
     luarocks52 list
 
-for Lua 5.1 or Lua 5.2, respectively. Initially, there are no rocks
-installed.
+or
+
+    luarocks53 list
+
+for Lua 5.1, Lua 5.2, or Lua 5.3, respectively. Initially, there are
+no rocks installed.
 
 ###                     ... install new rocks?                     ###
 
@@ -91,10 +105,14 @@ or
 
     luarocks52 install xyz
 
-to install rock `xyz` for Lua 5.1 or 5.2, respectively. If successful,
-the modules can be `require`d normally from within Lua programs. If a
-rock installs a command line script, that script is in your `PATH`
-automatically (assuming you use the "LuaRocks DosBox").
+or
+
+    luarocks53 install xyz
+
+to install rock `xyz` for Lua 5.1, 5.2, or 5.3, respectively. If
+successful, the modules can be `require`d normally from within Lua
+programs. If a rock installs a command line script, that script is in
+your `PATH` automatically (assuming you use the "LuaRocks DosBox").
 
 ###     ... install a rock that depends on an external library?    ###
 
@@ -125,6 +143,10 @@ or
 
     luarocks52 help
 
+or
+
+    luarocks53 help
+
 ###          ... install modules not managed by LuaRocks?          ###
 
 Lua uses path templates in environment variables (plus some builtin
@@ -132,18 +154,19 @@ locations) to look for modules. You can print those locations via
 
     lua51 -e "print(package.path)"
     lua52 -e "print(package.path)"
+    lua53 -e "print(package.path)"
 
 for Lua modules, and
 
     lua51 -e "print(package.cpath)"
     lua52 -e "print(package.cpath)"
+    lua53 -e "print(package.cpath)"
 
 for compiled C modules. As a convenience the "LuaRocks DosBox" puts
-the directories `...\3rdparty\lua\5.1` (or `...\3rdparty\lua\5.2`) for
-Lua modules, and `...\3rdparty\lib\5.1` (or `...\3rdparty\lib\5.2`)
-for compiled C modules into the mentioned search paths. If a compiled
-C module depends on an external DLL, you can put this DLL into
-`...\3rdparty\lib`.
+the directories `...\3rdparty\lua\5.x` (where `x` is 1, 2, or 3) for
+Lua modules, and `...\3rdparty\lib\5.x` for compiled C modules into
+the mentioned search paths. If a compiled C module depends on an
+external DLL, you can put this DLL into `...\3rdparty\lib`.
 
 
 ##                             Have fun!                            ##
