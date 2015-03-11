@@ -16,7 +16,7 @@
 
 :: some variables you might want to configure ...
 set LUAV51=5.1.5
-set LUAV52=5.2.3
+set LUAV52=5.2.4
 set LUAV53=5.3.0
 :: For the list/versions of MinGW packages used by default see the
 :: :download_mingw subroutine below!
