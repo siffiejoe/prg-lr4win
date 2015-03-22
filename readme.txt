@@ -23,7 +23,7 @@ So now open a "LuaRocks DosBox" and type the following:
 
 and
 
-    luarocks51 list
+    luarocks-5.1 list
 
 The first command should tell you version and copyright information
 about the included Lua interpreter (version 5.1), while the second
@@ -50,12 +50,12 @@ you use the "LuaRocks DosBox" all programs should be in your `PATH`):
 *   `luac53.exe`: the compiler for Lua 5.3.
 *   DLL and include files for Lua 5.3.
 *   The manual for Lua 5.3 in HTML format.
-*   `luarocks51.bat`: runs LuaRocks configured for Lua 5.1.
-*   `luarocks-admin51.bat`
-*   `luarocks52.bat`: runs LuaRocks configured for Lua 5.2.
-*   `luarocks-admin52.bat`
-*   `luarocks53.bat`: runs LuaRocks configured for Lua 5.3.
-*   `luarocks-admin53.bat`
+*   `luarocks-5.1.bat`: runs LuaRocks configured for Lua 5.1.
+*   `luarocks-admin-5.1.bat`
+*   `luarocks-5.2.bat`: runs LuaRocks configured for Lua 5.2.
+*   `luarocks-admin-5.2.bat`
+*   `luarocks-5.3.bat`: runs LuaRocks configured for Lua 5.3.
+*   `luarocks-admin-5.3.bat`
 *   Compiler commands for MinGW like `gcc`, `mingw32-make`, etc. (Yes,
     you can compile C programs from within the "LuaRocks DosBox" if
     you want to!)
@@ -82,15 +82,15 @@ directory.)
 
 ###                    ... list installed rocks?                   ###
 
-    luarocks51 list
+    luarocks-5.1 list
 
 or
 
-    luarocks52 list
+    luarocks-5.2 list
 
 or
 
-    luarocks53 list
+    luarocks-5.3 list
 
 for Lua 5.1, Lua 5.2, or Lua 5.3, respectively. Initially, there are
 no rocks installed.
@@ -99,15 +99,15 @@ no rocks installed.
 
 Just run
 
-    luarocks51 install xyz
+    luarocks-5.1 install xyz
 
 or
 
-    luarocks52 install xyz
+    luarocks-5.2 install xyz
 
 or
 
-    luarocks53 install xyz
+    luarocks-5.3 install xyz
 
 to install rock `xyz` for Lua 5.1, 5.2, or 5.3, respectively. If
 successful, the modules can be `require`d normally from within Lua
@@ -137,15 +137,15 @@ that DLLs can be found at runtime.
 You should read the documentation on the LuaRocks homepage (there is a
 link in the start menu), but for a quick overview you can use:
 
-    luarocks51 help
+    luarocks-5.1 help
 
 or
 
-    luarocks52 help
+    luarocks-5.2 help
 
 or
 
-    luarocks53 help
+    luarocks-5.3 help
 
 ###          ... install modules not managed by LuaRocks?          ###
 

@@ -52,9 +52,9 @@ From within the "LuaRocks DosBox" the following should work:
 *  Running `lua51` and `luac51`.
 *  Running `lua52` and `luac52`.
 *  Running `lua53` and `luac53`.
-*  Running `luarocks51` and `luarocks-admin51`.
-*  Running `luarocks52` and `luarocks-admin52`.
-*  Running `luarocks53` and `luarocks-admin53`.
+*  Running `luarocks-5.1` and `luarocks-admin-5.1`.
+*  Running `luarocks-5.2` and `luarocks-admin-5.2`.
+*  Running `luarocks-5.3` and `luarocks-admin-5.3`.
 *  Running the MinGW compiler tools.
 *  Include files in `...\3rdparty\include` should be picked up by
    LuaRocks automatically when you build a C module (in addition to

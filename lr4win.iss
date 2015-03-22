@@ -1,7 +1,7 @@
 [Setup]
 AppName="LuaRocks 4 Windows"
 AppId=LuaRocks4WindowsAllInOne
-AppVersion=2.2.0.2
+AppVersion=2.2.1.1
 DefaultDirName="{code:DefDirRoot}\LR4Win"
 DefaultGroupName="LuaRocks 4 Windows"
 Compression=lzma2
@@ -55,12 +55,12 @@ Source: "luarocks\src\bin\luarocks-admin"; DestDir: "{app}\luarocks\bin"; DestNa
 Source: "templates\config-5.1.lua"; DestDir: "{app}\luarocks\etc\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\config-5.2.lua"; DestDir: "{app}\luarocks\etc\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\config-5.3.lua"; DestDir: "{app}\luarocks\etc\luarocks"; AfterInstall: CustomizeConfig
-Source: "templates\luarocks51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
-Source: "templates\luarocks52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
-Source: "templates\luarocks53.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
-Source: "templates\luarocks-admin51.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
-Source: "templates\luarocks-admin52.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
-Source: "templates\luarocks-admin53.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-5.1.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-5.2.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-5.3.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-admin-5.1.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-admin-5.2.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
+Source: "templates\luarocks-admin-5.3.bat"; DestDir: "{app}\luarocks\bin"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_1.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_3.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
