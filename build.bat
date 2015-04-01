@@ -30,6 +30,7 @@ set WGET=%BINDIR%\wget.exe
 set SZIP=%BINDIR%\7z.exe
 set LUAURL=http://www.lua.org/ftp
 set MINGWURL=http://downloads.sourceforge.net/project/mingw/MinGW
+set NUGETURL=http://nuget.org/nuget.exe
 set BASEDIR="%~dp0"
 set LOGFILE="%~dp0build.log"
 
@@ -64,6 +65,7 @@ call :download_lua %LUAV51%
 call :download_lua %LUAV52%
 call :download_lua %LUAV53%
 call :download_mingw
+call :download %NUGETURL%
 :: compile Lua
 call :compile_lua51
 call :compile_lua 5.2
