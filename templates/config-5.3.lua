@@ -18,6 +18,6 @@ variables = {
   UNAME = LR4WIN..[[\tools\uname.exe]],
   WGET = LR4WIN..[[\tools\wget.exe]],
 }
-external_deps_dirs = { LR4WIN..[[\3rdparty]] }
+external_deps_dirs = { LR4WIN..[[\3rdparty]], LR4WIN..[[\nu]] }
 verbose = false
 

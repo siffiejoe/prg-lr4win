@@ -64,6 +64,8 @@ Source: "templates\luarocks-admin-5.3.bat"; DestDir: "{app}\luarocks\bin"; After
 Source: "templates\site_config_5_1.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_3.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
+; NuGet
+Source: "downloads\nuget.exe"; DestDir: "{app}\nu"; Tasks: installnuget
 ; Support files
 Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 Source: "licenses.txt"; DestDir: "{app}"
@@ -78,6 +80,9 @@ Name: "{app}\3rdparty\lua\5.3"
 Name: "{app}\3rdparty\lib\5.1"
 Name: "{app}\3rdparty\lib\5.2"
 Name: "{app}\3rdparty\lib\5.3"
+Name: "{app}\nu\packages"; Tasks: installnuget
+Name: "{app}\nu\include"; Tasks: installnuget
+Name: "{app}\nu\lib"; Tasks: installnuget
 Name: "{app}\luarocks\share\lua\5.1"
 Name: "{app}\luarocks\share\lua\5.2"
 Name: "{app}\luarocks\share\lua\5.3"
@@ -92,6 +97,7 @@ Name: "{app}\luarocks\lib\luarocks\rocks-5.3"
 Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:";
 Name: desktopicon\common; Description: "For all users"; GroupDescription: "Additional icons:"; Flags: exclusive; Check: IsPrivileged
 Name: desktopicon\user; Description: "For the current user only"; GroupDescription: "Additional icons:"; Flags: exclusive unchecked; Check: IsPrivileged
+Name: installnuget; Description: "Install NuGet and support files"; Flags: unchecked
 
 [Icons]
 Name: "{commondesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon\common
