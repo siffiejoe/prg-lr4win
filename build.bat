@@ -114,7 +114,7 @@ setlocal
 set _url=%1
 call :url_basename %_url%
 echo Downloading %_url% ...
-%WGET% -nc -P downloads %_url% >>%LOGFILE% 2>&1 || call :die
+%WGET% --no-check-certificate -nc -P downloads %_url% >>%LOGFILE% 2>&1 || call :die
 endlocal & set _result=%_result%
 goto :eof
 
@@ -161,8 +161,8 @@ setlocal
 :: the following packages are the most recent as of 2014/09/17
 set BINUTILS_BIN=%MINGWURL%/Base/binutils/binutils-2.24/binutils-2.24-1-mingw32-bin.tar.xz
 set BINUTILS_DEV=%MINGWURL%/Base/binutils/binutils-2.24/binutils-2.24-1-mingw32-dev.tar.xz
-set MINGWRT_DEV=%MINGWURL%/Base/mingw-rt/mingwrt-4.0.3/mingwrt-4.0.3-1-mingw32-dev.tar.lzma
-set MINGWRT_DLL=%MINGWURL%/Base/mingw-rt/mingwrt-4.0.3/mingwrt-4.0.3-1-mingw32-dll.tar.lzma
+set MINGWRT_DEV=%MINGWURL%/Base/mingwrt/mingwrt-4.0.3/mingwrt-4.0.3-1-mingw32-dev.tar.lzma
+set MINGWRT_DLL=%MINGWURL%/Base/mingwrt/mingwrt-4.0.3/mingwrt-4.0.3-1-mingw32-dll.tar.lzma
 set W23API_DEV=%MINGWURL%/Base/w32api/w32api-4.0.3/w32api-4.0.3-1-mingw32-dev.tar.lzma
 set MPC_DEV=%MINGWURL%/Base/mpc/mpc-1.0.1-2/mpc-1.0.1-2-mingw32-dev.tar.lzma
 set MPC_DLL=%MINGWURL%/Base/mpc/mpc-1.0.1-2/mpc-1.0.1-2-mingw32-dll.tar.lzma
