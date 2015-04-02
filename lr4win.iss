@@ -69,6 +69,7 @@ Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.2\lua\luaroc
 Source: "templates\site_config_5_3.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 ; NuGet
 Source: "downloads\nuget.exe"; DestDir: "{app}\nu"; Tasks: installnuget
+Source: "templates\nuget.bat"; DestDir: "{app}\luarocks\bin"; Tasks: installnuget; AfterInstall: CustomizeConfig
 ; Support files
 Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 Source: "licenses.txt"; DestDir: "{app}"
