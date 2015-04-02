@@ -1,7 +1,10 @@
+#define VERSION "2.2.1.1"
+
 [Setup]
 AppName="LuaRocks 4 Windows"
 AppId=LuaRocks4WindowsAllInOne
-AppVersion=2.2.1.1
+AppVersion={#VERSION}
+VersionInfoVersion={#VERSION}
 DefaultDirName="{code:DefDirRoot}\LR4Win"
 DefaultGroupName="LuaRocks 4 Windows"
 Compression=lzma2
