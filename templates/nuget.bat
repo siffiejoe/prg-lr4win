@@ -19,7 +19,7 @@ if errorlevel 1 goto :eof
 
 :: update ...\nu\include and ...\nu\lib
 echo Updating '%LR4WIN%\nu\include' and '%LR4WIN%\nu\lib' ...
-::%LR4WIN%\lua\lua52.exe %LR4WIN%\nu\nuupdate.lua %LR4WIN%
+%LR4WIN%\lua\lua52.exe %LR4WIN%\nu\nuupdate.lua %LR4WIN%
 goto :eof
 
 
