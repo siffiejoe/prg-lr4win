@@ -142,7 +142,7 @@ local function pathhandler( path, mode, root, rpath, name )
     end
   elseif mode == "directory" and name == "include" then
     -- recursively copy contents to `nu_include`
-    print( "copying files from '"..path.."' to '"..nu_include.."' ..." )
+    print( "Copying files from '"..path.."' to '"..nu_include.."' ..." )
     local res, err = copydir( path, nu_include )
     if not res then
       return BAIL, res, err
@@ -215,10 +215,10 @@ local function prompt( p, opts )
     io.write( "> " )
     local l = io.read( '*l' )
     if l then
-      i = l and tonumber( l:match( "%d+" ) ) or 0
+      i = tonumber( l:match( "%d+" ) )
     else
       i = 0
-    end -- handle EOF
+    end
   until i and i >= 0 and i <= #opts
   if i > 0 then
     return opts[ i ].value
@@ -229,7 +229,6 @@ end
 
 
 for dll,data in pairs( dlls ) do
-  print( "checking", dll, "..." )
   -- if at least one of the DLLs is linked to a MSVCRT, remove all
   -- that are not (this takes care of DEBUG versions)
   if any( data, has_msvcrt ) then
@@ -300,12 +299,12 @@ for dll,data in pairs( dlls ) do
   end
   -- copy selected DLL to `nu_lib`
   if d ~= nil then
-    print( "copying DLL '"..d.."' to '"..nu_lib.."' ..." )
+    print( "Copying DLL '"..d.."' to '"..nu_lib.."' ..." )
     local ret, err = copyfile( d, nu_lib..SEP..dll )
     if not ret then
       io.stderr:write( "Warning: Could not copy '", d, "': ", err, "\n" )
     end
   end
 end
-print( "done." )
+print( "Done." )
 

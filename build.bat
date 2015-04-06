@@ -222,7 +222,7 @@ goto :eof
 setlocal
 set _ver=%1
 echo Compiling Lua %_ver% ...
-type templates\luaconfext.h >> lua-%_ver%\src\luaconf.h
+::type templates\luaconfext.h >> lua-%_ver%\src\luaconf.h
 pushd lua-%_ver% || call :die
 mingw32-make.exe mingw >>%LOGFILE% 2>&1 || call :die
 popd
