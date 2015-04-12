@@ -59,6 +59,11 @@ you use the "LuaRocks DosBox" all programs should be in your `PATH`):
 *   Compiler commands for MinGW like `gcc`, `mingw32-make`, etc. (Yes,
     you can compile C programs from within the "LuaRocks DosBox" if
     you want to!)
+*   If you have selected the experimental `nuget` task during
+    installation, you have access to the `nuget.bat` command. This
+    batch file calls the standard NuGet command line client, and a
+    custom Lua script for postprocessing the installed packages
+    afterwards.
 
 
 ##                           How do I ...                           ##
@@ -168,6 +173,27 @@ Lua modules, and `...\3rdparty\lib\5.x` for compiled C modules into
 the mentioned search paths. If a compiled C module depends on an
 external DLL, you can put this DLL into `...\3rdparty\lib`.
 
+###     ... install libraries and include files for C modules?     ###
+
+If you have selected the experimental NuGet feature during
+installation of "LuaRocks 4 Windows", you can install some native
+packages from the NuGet repository. E.g.:
+
+    nuget install expat
+    luarocks-5.2 install luaexpat
+
+First you will need to install some additional rocks for the
+postprocessing of the NuGet packages -- calling `nuget` should tell
+you which ones. The postprocessing will copy include files from the
+installed packages to `...\nu\include` and DLLs to `...\nu\lib` where
+LuaRocks can find them. The installed packages are stored in
+`...\nu\packages` (in case you need additional files, e.g. import
+libraries or documentation).
+
+If you didn't enable the experimental NuGet feature, or if the desired
+library is not in the NuGet gallery, you have to install the DLLs and
+header files by hand. Use the `...\3rdparty\lib` and
+`...\3rdparty\include` directories for that.
 
 ##                             Have fun!                            ##
 
