@@ -137,6 +137,21 @@ For convenience the "LuaRocks DosBox" configures LuaRocks to look
 there by default, and the `lib` directory also is in the `PATH`, so
 that DLLs can be found at runtime.
 
+If you have selected the experimental NuGet feature during
+installation of "LuaRocks 4 Windows", you can install some native
+packages from the NuGet repository. E.g.:
+
+    nuget install expat
+    luarocks-5.2 install luaexpat
+
+First you will need to install some additional rocks for the
+postprocessing of the NuGet packages -- calling `nuget` should tell
+you which ones. The postprocessing will copy include files from the
+installed packages to `...\nu\include` and DLLs to `...\nu\lib` where
+LuaRocks can find them. The installed packages are stored in
+`...\nu\packages` (in case you need additional files, e.g. import
+libraries or documentation).
+
 ###       ... learn about all those other LuaRocks commands?       ###
 
 You should read the documentation on the LuaRocks homepage (there is a
@@ -172,28 +187,6 @@ the directories `...\3rdparty\lua\5.x` (where `x` is 1, 2, or 3) for
 Lua modules, and `...\3rdparty\lib\5.x` for compiled C modules into
 the mentioned search paths. If a compiled C module depends on an
 external DLL, you can put this DLL into `...\3rdparty\lib`.
-
-###     ... install libraries and include files for C modules?     ###
-
-If you have selected the experimental NuGet feature during
-installation of "LuaRocks 4 Windows", you can install some native
-packages from the NuGet repository. E.g.:
-
-    nuget install expat
-    luarocks-5.2 install luaexpat
-
-First you will need to install some additional rocks for the
-postprocessing of the NuGet packages -- calling `nuget` should tell
-you which ones. The postprocessing will copy include files from the
-installed packages to `...\nu\include` and DLLs to `...\nu\lib` where
-LuaRocks can find them. The installed packages are stored in
-`...\nu\packages` (in case you need additional files, e.g. import
-libraries or documentation).
-
-If you didn't enable the experimental NuGet feature, or if the desired
-library is not in the NuGet gallery, you have to install the DLLs and
-header files by hand. Use the `...\3rdparty\lib` and
-`...\3rdparty\include` directories for that.
 
 ##                             Have fun!                            ##
 

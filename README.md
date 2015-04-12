@@ -70,6 +70,10 @@ From within the "LuaRocks DosBox" the following should work:
    C modules in `...\3rdparty\lib\5.2`.
 *  `lua53` should also find Lua modules in `...\3rdparty\lua\5.3` and
    C modules in `...\3rdparty\lib\5.3`.
+*  If you have enabled the experimental NuGet support during
+   installation, the `nuget` command should install and postprocess
+   packages from the NuGet gallery, so that LuaRocks can find include
+   files and DLLs (using `...\nu\include` and `...\nu\lib`).
 
 If you don't want to use the "LuaRocks DosBox", you can have a look at
 `...\LuaRocksEnv.bat` for the necessary environment changes and apply
