@@ -70,6 +70,11 @@ From within the "LuaRocks DosBox" the following should work:
    C modules in `...\3rdparty\lib\5.2`.
 *  `lua53` should also find Lua modules in `...\3rdparty\lua\5.3` and
    C modules in `...\3rdparty\lib\5.3`.
+*  This package includes the yypkg package manager from the
+   [Win-Builds project][1] to allow you to install extra libraries.
+   You may either run `yypkg-1.5.0.exe` from the command line or start
+   the package manager from the start menu link. LuaRocks should pick
+   up installed header files and libraries automatically.
 *  If you have enabled the experimental NuGet support during
    installation, the `nuget` command should install and postprocess
    packages from the NuGet gallery, so that LuaRocks can find include
@@ -79,3 +84,4 @@ If you don't want to use the "LuaRocks DosBox", you can have a look at
 `...\LuaRocksEnv.bat` for the necessary environment changes and apply
 them yourself.
 
+  [1]: http://win-builds.org/

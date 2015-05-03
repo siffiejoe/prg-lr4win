@@ -18,6 +18,7 @@
 set LUAV51=5.1.5
 set LUAV52=5.2.4
 set LUAV53=5.3.0
+set WBV=1.5.0
 :: For the list/versions of MinGW packages used by default see the
 :: :download_mingw subroutine below!
 :: The required packages can be found here:
@@ -30,9 +31,11 @@ set WGET=%BINDIR%\wget.exe
 set SZIP=%BINDIR%\7z.exe
 set LUAURL=http://www.lua.org/ftp
 set MINGWURL=http://downloads.sourceforge.net/project/mingw/MinGW
+set WBURL=http://win-builds.org/%WBV%/win-builds-%WBV%.exe
+set WBPURL=http://win-builds.org/%WBV%/packages/windows_32
 set NUGETURL=http://nuget.org/nuget.exe
-set BASEDIR="%~dp0"
-set LOGFILE="%~dp0build.log"
+set BASEDIR=%~dp0
+set LOGFILE=%BASEDIR%build.log
 
 
 :: hack to make sure that we can bail out from within nested
@@ -45,18 +48,20 @@ exit /B
 :: start of the script
 :main
 :: make sure that our path does not contain spaces (MinGW will choke!)
-if %BASEDIR: =x% NEQ %BASEDIR% (
+if "%BASEDIR: =x%" NEQ "%BASEDIR%" (
   echo Argh! Our file path contains spaces. That won't work!
   echo Please run me from a safer location ...
   pause
   exit 1
 )
 :: put mingw directory into PATH for compiling Lua later
-set PATH=%~dp0mingw\bin;%PATH%
+set PATH=%BASEDIR%mingw\bin;%PATH%
 
 :: first create some necessary directories:
 mkdir downloads 2>NUL
 mkdir mingw 2>NUL
+:: clean up win-builds directory (yypkg is picky)
+rd /Q /S "%BASEDIR%yypkgs" 2>NUL
 :: empty log file
 type NUL > %LOGFILE%
 
@@ -65,7 +70,10 @@ call :download_lua %LUAV51%
 call :download_lua %LUAV52%
 call :download_lua %LUAV53%
 call :download_mingw
+call :download %WBURL%
 call :download %NUGETURL%
+:: setup yypkg directory
+call :setup_yypkg %BASEDIR%yypkgs
 :: compile Lua
 call :compile_lua51
 call :compile_lua 5.2
@@ -226,6 +234,17 @@ type templates\luaconfext.h >> lua-%_ver%\src\luaconf.h
 pushd lua-%_ver% || call :die
 mingw32-make.exe mingw >>%LOGFILE% 2>&1 || call :die
 popd
+endlocal
+goto :eof
+
+
+:setup_yypkg
+setlocal
+set _yyp=%1
+echo Setting up yypkg-%WBV% package manager ^(may take some time^) ...
+%BASEDIR%downloads\win-builds-%WBV% --prefix %_yyp% --init >>%LOGFILE% 2>&1 || call :die
+%_yyp%\bin\yypkg-%WBV% --prefix %_yyp% --config --predicates --set host=i686-w64-mingw32 target=i686-w64-mingw32 host_system="Native Windows" >>%LOGFILE% 2>&1 || call :die
+%_yyp%\bin\yypkg-%WBV% --prefix %_yyp% --config --set-mirror %WBPURL% >>%LOGFILE% 2>&1 || call :die
 endlocal
 goto :eof
 

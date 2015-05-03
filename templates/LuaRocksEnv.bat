@@ -1,7 +1,9 @@
 @echo off
 
 set LR4WIN=@@DIR@@
-set PATH=%LR4WIN%\mingw\bin;%LR4WIN%\lua;%LR4WIN%\3rdparty\lib;%LR4WIN%\nu\lib;%LR4WIN%\luarocks\bin;%PATH%
+set YYPREFIX=%LR4WIN%\yypkgs
+set PKG_CONFIG_LIBDIR=%LR4WIN%\yypkgs\lib\pkgconfig
+set PATH=%LR4WIN%\mingw\bin;%LR4WIN%\lua;%LR4WIN%\3rdparty\lib;%LR4WIN%\yypkgs\bin;%LR4WIN%\nu\lib;%LR4WIN%\luarocks\bin;%PATH%
 if not defined LUA_PATH set LUA_PATH=;
 set LUA_PATH=%LR4WIN%\luarocks\share\lua\5.1\?.lua;%LR4WIN%\luarocks\share\lua\5.1\?\init.lua;%LR4WIN%\3rdparty\lua\5.1\?.lua;%LR4WIN%\3rdparty\lua\5.1\?\init.lua;%LUA_PATH%
 if not defined LUA_CPATH set LUA_CPATH=;

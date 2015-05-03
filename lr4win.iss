@@ -1,4 +1,10 @@
-#define VERSION "2.2.1.1"
+; version number of the "LuaRocks 4 Windows" package (derived from the
+; LuaRocks version number plus a simple counter)
+#define VERSION "2.2.2.1"
+; you can disable support for the supported package managers here
+; to make the installer executable smaller:
+#define YYPKG
+#define NUGET
 
 [Setup]
 AppName="LuaRocks 4 Windows"
@@ -67,10 +73,16 @@ Source: "templates\luarocks-admin-5.3.bat"; DestDir: "{app}\luarocks\bin"; After
 Source: "templates\site_config_5_1.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_2.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
 Source: "templates\site_config_5_3.lua"; DestDir: "{app}\luarocks\2.2\lua\luarocks"; AfterInstall: CustomizeConfig
+#ifdef YYPKG
+; Win-Builds/yypkg
+Source: "yypkgs\*"; DestDir: "{app}\yypkgs"; Flags: recursesubdirs createallsubdirs;Tasks: installyypkg
+#endif
+#ifdef NUGET
 ; NuGet
 Source: "downloads\nuget.exe"; DestDir: "{app}\nu"; Tasks: installnuget
 Source: "templates\nuget.bat"; DestDir: "{app}\luarocks\bin"; Tasks: installnuget; AfterInstall: CustomizeConfig
 Source: "templates\nuupdate.lua"; DestDir: "{app}\nu"; Tasks: installnuget
+#endif
 ; Support files
 Source: "templates\LuaRocksEnv.bat"; DestDir: "{app}"; AfterInstall: CustomizeConfig
 Source: "licenses.txt"; DestDir: "{app}"
@@ -85,9 +97,11 @@ Name: "{app}\3rdparty\lua\5.3"
 Name: "{app}\3rdparty\lib\5.1"
 Name: "{app}\3rdparty\lib\5.2"
 Name: "{app}\3rdparty\lib\5.3"
+#ifdef NUGET
 Name: "{app}\nu\packages"; Tasks: installnuget
 Name: "{app}\nu\include"; Tasks: installnuget
 Name: "{app}\nu\lib"; Tasks: installnuget
+#endif
 Name: "{app}\luarocks\share\lua\5.1"
 Name: "{app}\luarocks\share\lua\5.2"
 Name: "{app}\luarocks\share\lua\5.3"
@@ -99,15 +113,23 @@ Name: "{app}\luarocks\lib\luarocks\rocks-5.2"
 Name: "{app}\luarocks\lib\luarocks\rocks-5.3"
 
 [Tasks]
-Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:";
+Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"
 Name: desktopicon\common; Description: "For all users"; GroupDescription: "Additional icons:"; Flags: exclusive; Check: IsPrivileged
 Name: desktopicon\user; Description: "For the current user only"; GroupDescription: "Additional icons:"; Flags: exclusive unchecked; Check: IsPrivileged
+#ifdef YYPKG
+Name: installyypkg; Description: "Install YYPKG package manager"
+#endif
+#ifdef NUGET
 Name: installnuget; Description: "Install NuGet and support files"; Flags: unchecked
+#endif
 
 [Icons]
 Name: "{commondesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon\common
 Name: "{userdesktop}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"; Tasks: desktopicon and (not desktopicon\common)
 Name: "{group}\LuaRocks DosBox"; Filename: "%COMSPEC%"; Parameters: "/K {app}\LuaRocksEnv.bat"; WorkingDir: "%USERPROFILE%"
+#ifdef YYPKG
+Name: "{group}\YYPKG package manager"; Filename: "{app}\yypkgs\bin\yypkg-1.5.0.exe"; Tasks: installyypkg
+#endif
 Name: "{group}\Show Readme"; Filename: "{app}\readme.txt"
 Name: "{group}\LuaRocks Documentation"; Filename: "{app}\luarocks.url"
 Name: "{group}\Lua 5.1 Manual"; Filename: "{app}\lua\manual\5.1\contents.html"

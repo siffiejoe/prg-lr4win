@@ -4,6 +4,7 @@ lua-5.1/
 lua-5.2/
 lua-5.3/
 mingw/
+yypkgs/
 build.log
 LR4WinSetup.exe
 

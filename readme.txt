@@ -59,12 +59,15 @@ you use the "LuaRocks DosBox" all programs should be in your `PATH`):
 *   Compiler commands for MinGW like `gcc`, `mingw32-make`, etc. (Yes,
     you can compile C programs from within the "LuaRocks DosBox" if
     you want to!)
+*   `yypkg-1.5.0.exe`: The package manager of the [Win-Builds][1]
+    project. Allows you to install additional libraries.
 *   If you have selected the experimental `nuget` task during
     installation, you have access to the `nuget.bat` command. This
     batch file calls the standard NuGet command line client, and a
     custom Lua script for postprocessing the installed packages
     afterwards.
 
+  [1]: http://win-builds.org/
 
 ##                           How do I ...                           ##
 
@@ -137,9 +140,16 @@ For convenience the "LuaRocks DosBox" configures LuaRocks to look
 there by default, and the `lib` directory also is in the `PATH`, so
 that DLLs can be found at runtime.
 
+The "LuaRocks 4 Windows" bundle by defaults also installs the yypkg
+package manager of the win-builds project. You can run it from the
+command line (`yypkg-1.5.0.exe` -- the extension is important) or via
+the link in the start menu to install various library packages.
+(Be advised: when first started *all* packages are selected for
+installation.)
+
 If you have selected the experimental NuGet feature during
 installation of "LuaRocks 4 Windows", you can install some native
-packages from the NuGet repository. E.g.:
+packages from the NuGet repository as well. E.g.:
 
     nuget install expat
     luarocks-5.2 install luaexpat
@@ -150,7 +160,10 @@ you which ones. The postprocessing will copy include files from the
 installed packages to `...\nu\include` and DLLs to `...\nu\lib` where
 LuaRocks can find them. The installed packages are stored in
 `...\nu\packages` (in case you need additional files, e.g. import
-libraries or documentation).
+libraries or documentation). The packages in the NuGet gallery often
+depend on runtime libraries different from the one used by this
+package. This *might* work ok, but it is generally discouraged. If
+possible you should use the yypkg packages.
 
 ###       ... learn about all those other LuaRocks commands?       ###
 
