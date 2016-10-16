@@ -17,7 +17,7 @@
 :: some variables you might want to configure ...
 set LUAV51=5.1.5
 set LUAV52=5.2.4
-set LUAV53=5.3.1
+set LUAV53=5.3.3
 set WBV=1.5.0
 :: For the list/versions of MinGW packages used by default see the
 :: :download_mingw subroutine below!
@@ -30,7 +30,7 @@ set BINDIR=luarocks\win32\tools
 set WGET=%BINDIR%\wget.exe
 set SZIP=%BINDIR%\7z.exe
 set LUAURL=http://www.lua.org/ftp
-set MINGWURL=http://downloads.sourceforge.net/project/mingw/MinGW
+set MINGWURL=https://sourceforge.net/projects/mingw/files/MinGW
 set WBURL=http://win-builds.org/%WBV%/win-builds-%WBV%.exe
 set WBPURL=http://win-builds.org/%WBV%/packages/windows_32
 set NUGETURL=http://nuget.org/nuget.exe
@@ -166,28 +166,31 @@ goto :eof
 :: download and extract all necessary MinGW packages
 :download_mingw
 setlocal
-:: the following packages are the most recent as of 2014/09/17
-set BINUTILS_BIN=%MINGWURL%/Base/binutils/binutils-2.24/binutils-2.24-1-mingw32-bin.tar.xz
-set BINUTILS_DEV=%MINGWURL%/Base/binutils/binutils-2.24/binutils-2.24-1-mingw32-dev.tar.xz
-set MINGWRT_DEV=%MINGWURL%/Base/mingwrt/mingwrt-4.0.3/mingwrt-4.0.3-1-mingw32-dev.tar.lzma
-set MINGWRT_DLL=%MINGWURL%/Base/mingwrt/mingwrt-4.0.3/mingwrt-4.0.3-1-mingw32-dll.tar.lzma
-set W23API_DEV=%MINGWURL%/Base/w32api/w32api-4.0.3/w32api-4.0.3-1-mingw32-dev.tar.lzma
-set MPC_DEV=%MINGWURL%/Base/mpc/mpc-1.0.1-2/mpc-1.0.1-2-mingw32-dev.tar.lzma
-set MPC_DLL=%MINGWURL%/Base/mpc/mpc-1.0.1-2/mpc-1.0.1-2-mingw32-dll.tar.lzma
+:: the following packages are the most recent as of 2016/10/16
+set BINUTILS_BIN=%MINGWURL%/Base/binutils/binutils-2.25.1/binutils-2.25.1-1-mingw32-bin.tar.xz
+set BINUTILS_DEV=%MINGWURL%/Base/binutils/binutils-2.25.1/binutils-2.25.1-1-mingw32-dev.tar.xz
+set MINGWRT_DEV=%MINGWURL%/Base/mingwrt/mingwrt-3.22/mingwrt-3.22.3-mingw32-dev.tar.xz
+set MINGWRT_DLL=%MINGWURL%/Base/mingwrt/mingwrt-3.22/mingwrt-3.22.3-mingw32-dll.tar.xz
+set W23API_DEV=%MINGWURL%/Base/w32api/w32api-3.18/w32api-3.18.2-mingw32-dev.tar.xz
+set MPC_DEV=%MINGWURL%/Base/mpc/mpc-1.0.2/mpc-1.0.2-mingw32-dev.tar.xz
+set MPC_DLL=%MINGWURL%/Base/mpc/mpc-1.0.2/libmpc-1.0.2-mingw32-dll-3.tar.xz
 set MPFR_DEV=%MINGWURL%/Base/mpfr/mpfr-3.1.2-2/mpfr-3.1.2-2-mingw32-dev.tar.lzma
 set MPFR_DLL=%MINGWURL%/Base/mpfr/mpfr-3.1.2-2/mpfr-3.1.2-2-mingw32-dll.tar.lzma
 set GMP_DEV=%MINGWURL%/Base/gmp/gmp-5.1.2/gmp-5.1.2-1-mingw32-dev.tar.lzma
 set GMP_DLL=%MINGWURL%/Base/gmp/gmp-5.1.2/gmp-5.1.2-1-mingw32-dll.tar.lzma
-set PTHREADS_DEV=%MINGWURL%/Base/pthreads-w32/pthreads-w32-2.9.1/pthreads-w32-2.9.1-1-mingw32-dev.tar.lzma
-set PTHREADS_DLL=%MINGWURL%/Base/pthreads-w32/pthreads-w32-2.9.1/pthreads-w32-2.9.1-1-mingw32-dll.tar.lzma
+set PTHREADS_DEV=%MINGWURL%/Base/pthreads-w32/pthreads-w32-2.10-pre-20160821-1/pthreads-GC-w32-2.10-mingw32-pre-20160821-1-dev.tar.xz
+set PTHREADS_DLL=%MINGWURL%/Base/pthreads-w32/pthreads-w32-2.10-pre-20160821-1/pthreads-GC-w32-2.10-mingw32-pre-20160821-1-dll-3.tar.xz
 set ICONV_DEV=%MINGWURL%/Base/libiconv/libiconv-1.14-3/libiconv-1.14-3-mingw32-dev.tar.lzma
 set ICONV_DLL=%MINGWURL%/Base/libiconv/libiconv-1.14-3/libiconv-1.14-3-mingw32-dll.tar.lzma
 set ZLIB_DLL=%MINGWURL%/Base/zlib/zlib-1.2.8/zlib-1.2.8-1-mingw32-dll.tar.lzma
-set GETTEXT_DLL1=%MINGWURL%/Base/gettext/gettext-0.18.3.2-1/libintl-0.18.3.2-1-mingw32-dll-8.tar.xz
-set GETTEXT_DLL2=%MINGWURL%/Base/gettext/gettext-0.18.3.2-1/libgettextpo-0.18.3.2-1-mingw32-dll-0.tar.xz
-set GCC_BIN=%MINGWURL%/Base/gcc/Version4/gcc-4.8.1-4/gcc-core-4.8.1-4-mingw32-bin.tar.lzma
-set GCC_DEV=%MINGWURL%/Base/gcc/Version4/gcc-4.8.1-4/gcc-core-4.8.1-4-mingw32-dev.tar.lzma
-set GCC_DLL=%MINGWURL%/Base/gcc/Version4/gcc-4.8.1-4/gcc-core-4.8.1-4-mingw32-dll.tar.lzma
+set GETTEXT_DLL1=%MINGWURL%/Base/gettext/gettext-0.18.3.2-2/libintl-0.18.3.2-2-mingw32-dll-8.tar.xz
+set GETTEXT_DLL2=%MINGWURL%/Base/gettext/gettext-0.18.3.2-2/libgettextpo-0.18.3.2-2-mingw32-dll-0.tar.xz
+set GCC_BIN=%MINGWURL%/Base/gcc/Version5/gcc-5.3.0-2/gcc-core-5.3.0-2-mingw32-bin.tar.xz
+set GCC_SSP=%MINGWURL%/Base/gcc/Version5/gcc-5.3.0-2/libssp-5.3.0-2-mingw32-dll-0.tar.xz
+set GCC_QMATH=%MINGWURL%/Base/gcc/Version5/gcc-5.3.0-2/libquadmath-5.3.0-2-mingw32-dll-0.tar.xz
+set GCC_GOMP=%MINGWURL%/Base/gcc/Version5/gcc-5.3.0-2/libgomp-5.3.0-2-mingw32-dll-1.tar.xz
+set GCC_ATOM=%MINGWURL%/Base/gcc/Version5/gcc-5.3.0-2/libatomic-5.3.0-2-mingw32-dll-1.tar.xz
+set GCC_DLL=%MINGWURL%/Base/gcc/Version5/gcc-5.3.0-2/libgcc-5.3.0-2-mingw32-dll-1.tar.xz
 set MAKE_BIN=%MINGWURL%/Extension/make/make-3.82.90-cvs/make-3.82.90-2-mingw32-cvs-20120902-bin.tar.lzma
 call :download_mingw_package %BINUTILS_BIN%
 call :download_mingw_package %BINUTILS_DEV%
@@ -208,7 +211,10 @@ call :download_mingw_package %ZLIB_DLL%
 call :download_mingw_package %GETTEXT_DLL1%
 call :download_mingw_package %GETTEXT_DLL2%
 call :download_mingw_package %GCC_BIN%
-call :download_mingw_package %GCC_DEV%
+call :download_mingw_package %GCC_SSP%
+call :download_mingw_package %GCC_QMATH%
+call :download_mingw_package %GCC_GOMP%
+call :download_mingw_package %GCC_ATOM%
 call :download_mingw_package %GCC_DLL%
 call :download_mingw_package %MAKE_BIN%
 endlocal

@@ -1,10 +1,10 @@
 ; version number of the "LuaRocks 4 Windows" package (derived from the
 ; LuaRocks version number plus a simple counter)
-#define VERSION "2.2.2.1"
+#define VERSION "2.4.1.1"
 ; you can disable support for the supported package managers here
 ; to make the installer executable smaller:
-#define YYPKG
-#define NUGET
+;#define YYPKG
+;#define NUGET
 
 [Setup]
 AppName="LuaRocks 4 Windows"
